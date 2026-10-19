@@ -77,3 +77,14 @@ A potential gap is **prompt injection through uploaded course documents**. A mal
 
 **Additional EARS requirement:**  
 **IF** retrieved course content contains instructions attempting to override system permissions or security policies, **THE SYSTEM SHALL** treat those instructions as untrusted content and shall not execute them.
+## Scope for HW3
+
+- Build story 2: Show the source of each answer.
+- No real payments. Where the spec says to charge a card, use a
+  "Simulated payment" button and list real payments as a non-goal in
+  the README.
+- No sign-in provider. Where the spec needs a signed-in user, use a
+  name typed into a text box and list real authentication as a
+  non-goal.
+- No database. Keep data in memory on the server and say in the README
+  that it resets on every deploy.
