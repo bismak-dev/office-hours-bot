@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { DEMO_INTRO } from "../lib/answer";
 
 type Passage = { source: string; text: string };
-type Exchange = { question: string; answer: string };
+type Exchange = { question: string; answer: string; passages: Passage[] };
 
 const MAX_QUESTION_LENGTH = 2000;
 
@@ -30,7 +31,7 @@ export default function Home() {
         setError(data.error ?? "Something went wrong. Please try again.");
         return;
       }
-      setHistory((h) => [...h, { question: question.trim(), answer: data.answer! }]);
+      setHistory((h) => [...h, { question: question.trim(), answer: data.answer!, passages: data.passages ?? [] }]);
       setQuestion("");
     } catch {
       setError("Could not reach the server. Please try again.");
@@ -80,7 +81,21 @@ export default function Home() {
       {history.map((item, i) => (
         <div className="card" key={i}>
           <div className="question">{item.question}</div>
-          <div className="answer">{item.answer}</div>
+          {item.passages.length === 0 ? (
+            <div className="answer">{item.answer}</div>
+          ) : (
+            <>
+              <div className="answer">{DEMO_INTRO}</div>
+              <ul className="passages" aria-label="Passages from the course materials">
+                {item.passages.map((p, j) => (
+                  <li key={j}>
+                    <p className="passage">{p.text}</p>
+                    <p className="source">Source: {p.source}</p>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       ))}
 

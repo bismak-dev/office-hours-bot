@@ -1,14 +1,23 @@
 # Office Hours Bot
 
-A demo of User Story 1 from the spec in [docs/](docs/): a student types a name, asks a question, and the app shows the most relevant passages from the sample course materials. No AI is connected yet ("demo mode").
+A demo of User Stories 1 and 2 from the spec in [docs/](docs/): a student types a name, asks a question, and the app shows the most relevant passages from the sample course materials, each with a "Source:" line naming the document and slide or section it came from. No AI is connected yet ("demo mode").
 
 - Live demo: https://office-hours-bot-one.vercel.app
 - Run locally: `npm install`, then `npm run dev`, then open http://localhost:3000
 - Run the tests: `npm test`
 
+## Non-goals
+
+This build deliberately leaves out:
+
+- **Real payments.** The spec has no payment step; if one is added, it will use a "Simulated payment" button instead of charging a card.
+- **Real authentication.** Where the spec needs a signed-in user, the app uses a name typed into a text box. Anyone can type any name.
+- **A database.** Questions and answers are kept in the server's memory only. They reset on every deploy, and whenever the server restarts.
+- **A real AI.** Answers are the matching passages from the course materials, shown as they are.
+
 ## Security spec audit
 
-Audit of the build deployed on 2026-10-06 against [the security spec](docs/Starter%20Spec%20B%20-%20Office%20Hours%20Bot%20-%20SECURITY_SPEC.md).
+Audit of the build deployed on 2026-10-06 (before Story 2) against [the security spec](docs/SECURITY_SPEC.md).
 
 **Summary: 7 of 29 requirements are fully satisfied, 7 partly, and 15 not at all.** This build is a demo with sample materials only. It must not hold real student questions or real course materials.
 

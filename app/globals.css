@@ -47,3 +47,8 @@ button.link { background: none; color: var(--accent); padding: 0; margin: 0; fon
 .question { font-weight: 600; }
 .answer { white-space: pre-wrap; margin-top: 8px; }
 .error { color: var(--error); margin-top: 8px; }
+.passages { list-style: none; margin: 8px 0 0; padding: 0; }
+.passages li { border-top: 1px solid var(--border); padding: 10px 0; }
+.passages li:last-child { padding-bottom: 0; }
+.passage { margin: 0; }
+.source { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
