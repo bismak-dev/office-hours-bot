@@ -2,6 +2,7 @@ import { loadPassages } from "../../../lib/materials";
 import { searchPassages } from "../../../lib/search";
 import { fakeAnswer } from "../../../lib/answer";
 import { saveQuestion } from "../../../lib/store";
+import { checkRateLimit } from "../../../lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -29,6 +30,11 @@ export async function POST(request: Request) {
       { error: `Your question is too long. Please shorten it to ${MAX_QUESTION_LENGTH.toLocaleString("en-US")} characters or fewer.` },
       { status: 400 },
     );
+  }
+
+  const limit = checkRateLimit(name);
+  if (!limit.allowed) {
+    return Response.json({ error: limit.error }, { status: 429 });
   }
 
   const passages = searchPassages(question, loadPassages());

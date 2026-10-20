@@ -21,7 +21,7 @@ Audit of the build deployed on 2026-10-06 (before Story 2) against [the security
 
 **Summary: 7 of 29 requirements are fully satisfied, 7 partly, and 15 not at all.** This build is a demo with sample materials only. It must not hold real student questions or real course materials.
 
-Most of the "Fully" ratings hold only because the risky feature does not exist yet (no AI, no staff screens, no logging). Each of those is marked "by absence" and must be re-checked when the feature is added. Only the 2,000-character limit (part of SEC-022) is covered by an automated test.
+Most of the "Fully" ratings hold only because the risky feature does not exist yet (no AI, no staff screens, no logging). Each of those is marked "by absence" and must be re-checked when the feature is added. Only SEC-022 (the per-student limits) is covered by automated tests.
 
 | ID | Requirement | Satisfied? | Why |
 |---|---|---|---|
@@ -47,7 +47,7 @@ Most of the "Fully" ratings hold only because the risky feature does not exist y
 | SEC-019 | Anonymous answer reports | Not at all | There is no way to report an answer. |
 | SEC-020 | Hidden information stays hidden | Partly | There are no AI instructions, private graded items, or readable chats to reveal, but there is no decline behavior and no evaluation. |
 | SEC-021 | No cross-student leakage | Fully | The search covers only the materials files, and each answer is built from only the current question and those passages. |
-| SEC-022 | Per-student limits | Partly | The 2,000-character limit is enforced and tested; the 40-per-day and 10-per-minute limits do not exist. |
+| SEC-022 | Per-student limits | Partly | The 2,000-character, 10-per-minute and 40-per-calendar-day (US Eastern) limits are now enforced on the server and tested; still missing: a "student" is only a typed name, so changing the name resets the count, and counts live in server memory, so they reset on every deploy or restart and are not shared between Vercel server copies. |
 | SEC-023 | Hard budget cap | Not at all | There is no spending tracking or cap; there is no AI spending yet either. |
 | SEC-024 | Staff upload limits | Not at all | There is no upload feature. |
 | SEC-025 | Audit log | Not at all | Nothing is recorded about staff actions or denied requests. |

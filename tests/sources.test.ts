@@ -6,12 +6,16 @@ import { loadPassages } from "../lib/materials";
 
 type Passage = { document: string; section: string | null; source: string; text: string };
 
+// Each question comes from a different test student, because these tests ask far more
+// than the 10-per-minute limit (SEC-022) allows one student; that limit is tested separately.
+let studentNumber = 0;
+
 async function ask(question: string): Promise<{ answer: string; passages: Passage[] }> {
   const res = await POST(
     new Request("http://localhost/api/ask", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ name: "Test Student", question }),
+      body: JSON.stringify({ name: `Test Student ${++studentNumber}`, question }),
     }),
   );
   expect(res.status).toBe(200);
